@@ -1,77 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoT Air Purifier Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Price Tiers</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+    <link rel="stylesheet" href="app.css">
+    <style>
+        .panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
+        .pricing-container {
+            display: flex;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-green {
+            background-color: #386641;
+            color: white;
+            font-size: 1.5em;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn-green:hover {
+            background-color: darkgreen;
+        }
+    </style>
 </head>
+
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#laboratory">Laboratory</a></li>
-            <li><a href="#living-room">Living Room</a></li>
-            <li><a href="#kitchen">Kitchen</a></li>
-        </ul>
-    </nav>
+    <div class="panel">
+        <div class="pricing-container">
+            <div class="pricing-plan">
+                <img src="o2.png" alt="" class="pricing-img">
+                <h2 class="pricing-header">O2</h2>
+                <ul class="pricing-features">
+                    <!-- <li class="pricing-features-item">Custom domains</li> -->
+                    <li class="pricing-features-item">Deskripsi singkat tentang.....</li>
+                </ul>
+                <span class="pricing-price oxygen">18%</span>
+                <!-- <a href="#/" class="pricing-button">Sign up</a> -->
+            </div>
 
-    <div id="sensorData"></div>
+            <div class="pricing-plan">
+                <img src="pm.png" alt="" class="pricing-img">
+                <h2 class="pricing-header">PM 2.5</h2>
+                <ul class="pricing-features">
+                    <!-- <li class="pricing-features-item">Dedicated</li> -->
+                    <li class="pricing-features-item">Deskripsi singkat tentang.....</li>
+                </ul>
+                <span class="pricing-price pm">XX</span>
+                <!-- <a href="#/" class="pricing-button">Free trial</a> -->
+            </div>
 
-    <div class="room" id="laboratory">
-        <div class="room-header">Laboratory</div>
-        <div class="sensor" id="temperature-laboratory">Temperature: Loading...</div>
-        <div class="sensor" id="humidity-laboratory">Humidity: Loading...</div>
-        <div class="sensor" id="pm25-laboratory">PM 2.5: Loading...</div>
-        <div class="sensor" id="co2-laboratory">CO2: Loading...</div>
-        <div class="sensor" id="o2-laboratory">O2: Loading...</div>
+            <div class="pricing-plan">
+                <img src="temp.png" alt="" class="pricing-img">
+                <h2 class="pricing-header">Temperature</h2>
+                <ul class="pricing-features">
+                    <!-- <li class="pricing-features-item">Dedicated</li> -->
+                    <li class="pricing-features-item">Deskripsi singkat tentang.....</li>
+                </ul>
+                <span class="pricing-price temperature">31 C</span>
+                <!-- <a href="#/" class="pricing-button">Free trial</a> -->
+            </div>
+
+            <div class="pricing-plan">
+                <img src="humid.png" alt="" class="pricing-img">
+                <h2 class="pricing-header">Humidity</h2>
+                <ul class="pricing-features">
+                    <!-- <li class="pricing-features-item">Custom domains</li> -->
+                    <li class="pricing-features-item">Deskripsi singkat tentang.....</li>
+                </ul>
+                <span class="pricing-price humidity">XX</span>
+                <!-- <a href="#/" class="pricing-button">Sign up</a> -->
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="btn btn-green btn-lg">Power</button>
+        </div>
     </div>
-
-    <div class="room" id="living-room">
-        <div class="room-header">Living Room</div>
-        <div class="sensor" id="temperature-living">Temperature: Loading...</div>
-        <div class="sensor" id="humidity-living">Humidity: Loading...</div>
-        <div class="sensor" id="pm25-living">PM 2.5: Loading...</div>
-        <div class="sensor" id="co2-living">CO2: Loading...</div>
-        <div class="sensor" id="o2-living">O2: Loading...</div>
-    </div>
-
-    <div class="room" id="kitchen">
-        <div class="room-header">Kitchen</div>
-        <div class="sensor" id="temperature-kitchen">Temperature: Loading...</div>
-        <div class="sensor" id="humidity-kitchen">Humidity: Loading...</div>
-        <div class="sensor" id="pm25-kitchen">PM 2.5: Loading...</div>
-        <div class="sensor" id="co2-kitchen">CO2: Loading...</div>
-        <div class="sensor" id="o2-kitchen">O2: Loading...</div>
-    </div>
-
-    <script src="app.js"></script>
-
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyB4YA-fYRWTNh0Oj3dgZGxuPfe_G4btWJs",
-          authDomain: "karsasejuk.firebaseapp.com",
-          projectId: "karsasejuk",
-          storageBucket: "karsasejuk.appspot.com",
-          messagingSenderId: "78547387742",
-          appId: "1:78547387742:web:a49c200891927fcaba3bcf",
-          measurementId: "G-8DTF69E5TC"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
 </body>
+
 </html>
